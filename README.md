@@ -37,3 +37,13 @@ This project is a "Vanilla" web application, meaning it runs natively in the bro
 └── assets/
     ├── styles.min.css              # Minified Stylesheet
     └── script.js                   # Calculation Logic
+
+💻 Local Installation
+Clone the repository:
+
+Bash
+
+git clone [https://github.com/your-username/gradeify-website.git](https://github.com/your-username/gradeify-website.git)
+Open index.html in any modern web browser.
+
+For live access, visit [gradeify.app.](https://gradeify.app/)
