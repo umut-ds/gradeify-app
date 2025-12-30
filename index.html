@@ -80,6 +80,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
     header {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -147,11 +148,21 @@
       align-items: center;
       justify-content: center;
     }
-    .seo-section {
+    .seo-section, .faq-section {
       margin-top: 4rem;
       padding: 2.5rem;
       background: var(--card);
       border-radius: 16px;
+    }
+    .faq-section {
+      margin-top: 3rem;
+    }
+    .faq-item {
+      margin-bottom: 1.5rem;
+    }
+    .faq-question {
+      font-weight: 600;
+      margin-bottom: .5rem;
     }
     footer {
       text-align: center;
@@ -244,6 +255,27 @@
         <li>🌍 International grading systems supported</li>
       </ul>
     </article>
+
+    <!-- FAQ Section -->
+    <article class="faq-section" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">Are the calculations accurate?</div>
+        <p>Yes, Gradeify uses standard academic formulas for US 4.0 GPA, UK classifications, and ECTS systems. Results match university grading policies.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is my data saved or shared?</div>
+        <p>No. All calculations run locally in your browser. No data is stored, tracked, or sent to servers.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Will I see ads while using the calculators?</div>
+        <p>Ads appear on all pages but are placed non-intrusively. They never interrupt or cover the calculator tools themselves.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What grading systems are supported?</div>
+        <p>US 4.0 GPA, UK (First, 2:1, 2:2, Third), ECTS (A-F), and percentage-based systems.</p>
+      </div>
+    </article>
   </main>
 
   <footer>
@@ -253,6 +285,8 @@
       <a href="/final-grade-calculator.html">Final</a>
       <a href="/weighted-grade-calculator.html">Weighted</a>
       <a href="/gpa-calculator.html">GPA</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:hello@gradeify.app">Contact Us</a>
     </nav>
   </footer>
 
