@@ -1,0 +1,18 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.log
+tmp/
+temp/
+
+# Production builds (Eğer ileride kullanırsan)
+dist/
+build/
