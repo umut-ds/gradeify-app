@@ -3,24 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weighted Grade Calculator — Gradify</title>
+  <title>Weighted Grade Calculator — Gradeify</title>
   <meta name="description" content="Calculate your overall grade when assignments have different weights. Add as many items as needed." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://gradify.app/weighted-grade-calculator.html" />
-  
-  <!-- Critical CSS -->
-  <style>
-    :root{--primary:#4f46e5;--primary-dark:#4338ca}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;margin:0;background:#f6f7fb;color:#222;line-height:1.6}header{background:var(--primary);color:#fff;padding:3rem 1rem;text-align:center}header a{color:white;text-decoration:none}h1{margin:0;font-size:2.5rem}header p{margin:.5rem 0 0;opacity:.9}main{max-width:1000px;margin:0 auto;padding:1rem}.skip-to-content{position:absolute;left:-9999px;z-index:999;background:var(--primary);color:white;padding:1rem;text-decoration:none}.skip-to-content:focus{left:0;top:0}
-  </style>
-  
-  <link rel="stylesheet" href="/assets/styles.min.css" />
-  
+  <link rel="canonical" href="https://gradeify.app/weighted-grade-calculator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Weighted Grade Calculator — Gradeify" />
+  <meta property="og:description" content="Free tool to calculate weighted average grades." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gradeify.app/weighted-grade-calculator.html" />
+  <meta property="og:image" content="https://gradeify.app/assets/og-image-weighted.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Weighted Grade Calculator — Gradeify" />
+  <meta name="twitter:description" content="Calculate weighted average grades easily." />
+  <meta name="twitter:image" content="https://gradeify.app/assets/og-image-weighted.png" />
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
+  <!-- Lucide Icons (self-hosted) -->
+  <script src="/assets/lucide.min.js" defer></script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+
   <!-- Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Gradify - Weighted Grade Calculator",
+    "name": "Gradeify - Weighted Grade Calculator",
     "description": "Calculate your overall grade with multiple assignments and different weights.",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "All",
@@ -32,75 +48,426 @@
     }
   }
   </script>
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Weighted Grade Calculator — Gradify" />
-  <meta property="og:description" content="Free tool to calculate weighted average grades." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://gradify.app/weighted-grade-calculator.html" />
-  <meta property="og:image" content="https://gradify.app/assets/og-image-weighted.png" />
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Weighted Grade Calculator — Gradify" />
-  <meta name="twitter:description" content="Calculate weighted average grades easily." />
-  <meta name="twitter:image" content="https://gradify.app/assets/og-image-weighted.png" />
+
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #f8fafc;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      padding: 4rem 1rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(79,70,229,.35);
+    }
+    header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.15rem;
+      opacity: .95;
+      max-width: 640px;
+      margin: 1rem auto 0;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .back-link {
+      text-align: center;
+      margin: 3rem 0 4rem;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    .back-link a {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+    .calculator-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+    .intro-text {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: .9;
+    }
+    #assignments {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .assignment-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 50px;
+      gap: 1rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .assignment-row {
+        grid-template-columns: 1fr;
+      }
+      .assignment-row > .remove-btn {
+        justify-self: start;
+      }
+    }
+    .assignment-row input[type="text"],
+    .assignment-row input[type="number"] {
+      padding: .85rem 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+    .assignment-row input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79,70,229,.2);
+    }
+    .remove-btn {
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .remove-btn:hover {
+      background: #dc2626;
+    }
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0 4rem;
+    }
+    .primary-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: .85rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .primary-btn:hover {
+      background: var(--primary-dark);
+    }
+    .secondary-btn {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: .85rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .secondary-btn:hover {
+      background: rgba(79,70,229,.1);
+    }
+    .calculate-btn {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border: none;
+      padding: 1.2rem;
+      border-radius: 16px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .calculate-btn:hover {
+      opacity: .9;
+    }
+    #weightedResult {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      min-height: 60px;
+    }
+    .ad {
+      margin: 3rem auto;
+      max-width: 728px;
+      min-height: 90px;
+      background: rgba(0,0,0,.03);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .how-to {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 3rem;
+    }
+    .how-to h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 4rem 1rem;
+      opacity: .85;
+      margin-top: 4rem;
+    }
+    footer nav a {
+      margin: 0 .75rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .skip-to-content {
+      position: absolute;
+      left: -9999px;
+      background: var(--primary);
+      color: #fff;
+      padding: .75rem 1rem;
+      z-index: 999;
+    }
+    .skip-to-content:focus {
+      left: 1rem;
+      top: 1rem;
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
-  
+
   <header>
-    <h1><a href="/">Gradify</a></h1>
+    <h1>Gradeify</h1>
     <p>Free Weighted Grade Calculator</p>
   </header>
-  
+
   <main id="main-content">
     <div class="back-link">
-      <a href="/">← All Calculators</a>
+      <a href="/">← Back to All Calculators</a>
     </div>
-    
+
     <div class="ad" role="complementary" aria-label="Advertisement">
-      AdSense – Top Banner
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
-    
-    <section aria-labelledby="weighted-heading">
+
+    <section class="calculator-card" aria-labelledby="weighted-heading">
       <h2 id="weighted-heading">Weighted Grade Calculator</h2>
-      <p>Add all your assignments with their scores and weights. The calculator will determine your overall weighted grade.</p>
-      
+      <p class="intro-text">Add all your assignments, quizzes, or exams with their scores and weights. The calculator will compute your overall weighted grade.</p>
+
       <div id="assignments" role="list" aria-label="Assignments list"></div>
-      
-      <div class="add-course">
+
+      <div class="button-group">
         <button id="addAssignmentBtn" class="primary-btn">+ Add Assignment</button>
-        <button id="clearWeightedBtn" class="secondary">Clear All</button>
+        <button id="clearWeightedBtn" class="secondary-btn">Clear All</button>
       </div>
-      
-      <button id="calculateWeightedBtn" class="calculate-btn">Calculate Weighted Grade</button>
-      
-      <div id="weightedResult" class="result" role="alert" aria-live="polite"></div>
+
+      <button id="calculateWeightedBtn" class="calculate-btn">
+        Calculate Weighted Grade
+      </button>
+
+      <div id="weightedResult" role="alert" aria-live="polite"></div>
     </section>
-    
+
     <div class="ad" role="complementary" aria-label="Advertisement">
-      AdSense – Bottom
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
-    
-    <section>
+
+    <section class="how-to">
       <h3>How to Use This Calculator</h3>
-      <p>Add each assignment or category (homework, quizzes, exams) with its score and weight. The total weight should equal 100% for accurate results.</p>
-      <p><strong>Example:</strong> Homework (85%, 20 weight), Midterm (78%, 30 weight), Final (90%, 50 weight) = 84.1% overall grade.</p>
-      <p><strong>Disclaimer:</strong> This is an estimation tool. Always confirm with your instructor or syllabus.</p>
+      <p>Add each assignment or category (e.g., homework, quizzes, exams) with the score you received and its weight in the course. For best accuracy, the total weight should equal 100%.</p>
+      <p><strong>Example:</strong> Homework (85%, 20% weight), Midterm (78%, 30% weight), Final (90%, 50% weight) → Overall grade: 84.1%</p>
+      <p><strong>Disclaimer:</strong> This is an estimation tool. Always verify your final grade with your instructor or official syllabus.</p>
     </section>
   </main>
-  
+
   <footer>
-    <p>© 2025 Gradify.app</p>
+    <p>© 2025 <strong>Gradeify</strong>. Built for students.</p>
     <nav aria-label="Footer navigation">
-      <a href="/">Home</a> • 
-      <a href="/final-grade-calculator.html">Final</a> • 
-      <a href="/weighted-grade-calculator.html">Weighted</a> • 
+      <a href="/">Home</a>
+      <a href="/final-grade-calculator.html">Final</a>
+      <a href="/weighted-grade-calculator.html">Weighted</a>
       <a href="/gpa-calculator.html">GPA</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:hello@gradeify.app">Contact Us</a>
     </nav>
   </footer>
-  
-  <script src="/assets/script.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+
+      const assignmentsContainer = document.getElementById('assignments');
+      const addBtn = document.getElementById('addAssignmentBtn');
+      const clearBtn = document.getElementById('clearWeightedBtn');
+      const calculateBtn = document.getElementById('calculateWeightedBtn');
+      const resultDiv = document.getElementById('weightedResult');
+
+      function createAssignmentRow() {
+        const row = document.createElement('div');
+        row.className = 'assignment-row';
+
+        row.innerHTML = `
+          <input type="text" placeholder="Assignment name (e.g., Homework)" aria-label="Assignment name">
+          <input type="number" min="0" max="100" step="0.01" placeholder="Score %" aria-label="Score received (%)" required>
+          <input type="number" min="0" max="100" step="0.01" placeholder="Weight %" aria-label="Weight (%)" required>
+          <button type="button" class="remove-btn" aria-label="Remove this assignment">−</button>
+        `;
+
+        const removeBtn = row.querySelector('.remove-btn');
+        removeBtn.addEventListener('click', () => {
+          if (assignmentsContainer.children.length > 1) {
+            row.remove();
+            updateRemoveButtons();
+          }
+        });
+
+        return row;
+      }
+
+      function updateRemoveButtons() {
+        const rows = assignmentsContainer.querySelectorAll('.assignment-row');
+        const removeButtons = assignmentsContainer.querySelectorAll('.remove-btn');
+
+        if (rows.length === 1) {
+          removeButtons.forEach(btn => {
+            btn.style.visibility = 'hidden';
+            btn.style.opacity = '0';
+          });
+        } else {
+          removeButtons.forEach(btn => {
+            btn.style.visibility = 'visible';
+            btn.style.opacity = '1';
+          });
+        }
+      }
+
+      // Start with one row, remove button hidden
+      assignmentsContainer.appendChild(createAssignmentRow());
+      updateRemoveButtons();
+
+      addBtn.addEventListener('click', () => {
+        assignmentsContainer.appendChild(createAssignmentRow());
+        updateRemoveButtons();
+      });
+
+      clearBtn.addEventListener('click', () => {
+        assignmentsContainer.innerHTML = '';
+        assignmentsContainer.appendChild(createAssignmentRow());
+        updateRemoveButtons();
+        resultDiv.textContent = '';
+      });
+
+      calculateBtn.addEventListener('click', () => {
+        const rows = assignmentsContainer.querySelectorAll('.assignment-row');
+        let totalWeighted = 0;
+        let totalWeight = 0;
+        let hasError = false;
+
+        rows.forEach(row => {
+          const scoreInput = row.querySelector('input[type="number"]:nth-of-type(1)');
+          const weightInput = row.querySelector('input[type="number"]:nth-of-type(2)');
+
+          const score = parseFloat(scoreInput.value);
+          const weight = parseFloat(weightInput.value);
+
+          if (isNaN(score) || isNaN(weight) || score < 0 || score > 100 || weight < 0) {
+            hasError = true;
+            return;
+          }
+
+          totalWeighted += (score / 100) * weight;
+          totalWeight += weight;
+        });
+
+        if (hasError) {
+          resultDiv.textContent = 'Please fill in all fields with valid values (score 0-100, weight ≥ 0).';
+          resultDiv.style.color = '#ef4444';
+          return;
+        }
+
+        if (totalWeight === 0) {
+          resultDiv.textContent = 'Total weight cannot be zero.';
+          resultDiv.style.color = '#ef4444';
+          return;
+        }
+
+        const finalGrade = (totalWeighted / totalWeight) * 100;
+
+        resultDiv.textContent = `Overall Grade: ${finalGrade.toFixed(2)}%`;
+
+        if (Math.abs(totalWeight - 100) > 0.1) {
+          resultDiv.textContent += ` (Total weight: ${totalWeight.toFixed(1)}%)`;
+        }
+
+        resultDiv.style.color = finalGrade >= 70 ? '#22c55e' : finalGrade >= 50 ? '#f59e0b' : '#ef4444';
+      });
+    });
+  </script>
 </body>
 </html>
