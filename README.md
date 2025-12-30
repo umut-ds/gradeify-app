@@ -1,4 +1,4 @@
-# 🎓 Gradify - Ultimate Academic Grade & GPA Calculator
+# 🎓 Gradeify - Ultimate Academic Grade & GPA Calculator
 
 Gradify is a high-performance, lightweight, and accessible web application designed for students worldwide. It simplifies complex academic calculations, including final exam predictions, weighted averages, and international GPA conversions (US, UK, ECTS).
 
