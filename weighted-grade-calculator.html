@@ -184,7 +184,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
-      margin: 3rem 0 4rem;
+      margin: 3rem 0 2rem; /* Calculate butonu ile arasında yeterli boşluk */
     }
     .primary-btn {
       background: var(--primary);
@@ -216,7 +216,7 @@
       display: block;
       width: 100%;
       max-width: 400px;
-      margin: 0 auto;
+      margin: 0 auto 2.5rem; /* sonuç alanından önce boşluk */
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
       border: none;
@@ -423,6 +423,7 @@
         resultDiv.textContent = '';
       });
 
+      // SORUN BURADAYDI: button-group dışına taşındıktan sonra ID aynı kaldı ama stil değişti → JS hâlâ çalışıyor!
       calculateBtn.addEventListener('click', () => {
         const rows = assignmentsContainer.querySelectorAll('.assignment-row');
         let totalWeighted = 0;
