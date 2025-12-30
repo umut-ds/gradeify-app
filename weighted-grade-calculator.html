@@ -24,9 +24,6 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <!-- Lucide Icons (self-hosted) -->
-  <script src="/assets/lucide.min.js" defer></script>
-
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
      crossorigin="anonymous"></script>
@@ -184,7 +181,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
-      margin: 3rem 0 2rem; /* Calculate butonu ile arasında yeterli boşluk */
+      margin: 3rem 0 2rem;
     }
     .primary-btn {
       background: var(--primary);
@@ -216,7 +213,7 @@
       display: block;
       width: 100%;
       max-width: 400px;
-      margin: 0 auto 2.5rem; /* sonuç alanından önce boşluk */
+      margin: 0 auto 2.5rem;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
       border: none;
@@ -358,10 +355,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-      }
-
       const assignmentsContainer = document.getElementById('assignments');
       const addBtn = document.getElementById('addAssignmentBtn');
       const clearBtn = document.getElementById('clearWeightedBtn');
@@ -423,7 +416,6 @@
         resultDiv.textContent = '';
       });
 
-      // SORUN BURADAYDI: button-group dışına taşındıktan sonra ID aynı kaldı ama stil değişti → JS hâlâ çalışıyor!
       calculateBtn.addEventListener('click', () => {
         const rows = assignmentsContainer.querySelectorAll('.assignment-row');
         let totalWeighted = 0;
