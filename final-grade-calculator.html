@@ -108,7 +108,6 @@
       padding: 1rem;
     }
 
-    /* Ortalanmış geri dönüş linki */
     .back-link {
       text-align: center;
       margin: 3rem 0 4rem;
@@ -134,7 +133,6 @@
       margin-bottom: 3rem;
     }
 
-    /* Weighted'daki başlık ve açıklama stili */
     h2 {
       margin-top: 0;
       font-size: 2rem;
@@ -170,7 +168,6 @@
       box-shadow: 0 0 0 3px rgba(79,70,229,.2);
     }
 
-    /* Tooltip stili - mavi i ikonu */
     .tooltip {
       display: inline-flex;
       margin-left: 0.5rem;
@@ -229,13 +226,12 @@
       visibility: visible;
     }
 
-    /* Weighted'daki buton stiline tam uyum */
     .button-group {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       justify-content: center;
-      margin: 3rem 0 4rem; /* biraz daha aşağı çekmek için */
+      margin: 3rem 0 4rem;
     }
 
     .primary-btn {
@@ -245,7 +241,7 @@
       padding: .85rem 1.5rem;
       border-radius: 12px;
       font-size: 1rem;
-      font-weight: 600; /* kalın yazı */
+      font-weight: 600;
       cursor: pointer;
     }
     .primary-btn:hover {
@@ -259,7 +255,7 @@
       padding: .85rem 1.5rem;
       border-radius: 12px;
       font-size: 1rem;
-      font-weight: 600; /* kalın yazı */
+      font-weight: 600;
       cursor: pointer;
     }
     .secondary:hover {
@@ -272,6 +268,7 @@
       font-size: 2rem;
       font-weight: bold;
       min-height: 60px;
+      transition: color 0.3s ease;
     }
 
     .ad {
@@ -401,10 +398,66 @@
     </nav>
   </footer>
 
-  <script src="/assets/lucide.min.js" defer></script>
-  <script src="/assets/script.js" defer></script>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+      const calculateBtn = document.getElementById('calculateFinalBtn');
+      const clearBtn = document.getElementById('clearFinalBtn');
+      const resultDiv = document.getElementById('finalResult');
+
+      calculateBtn.addEventListener('click', () => {
+        const current = parseFloat(document.getElementById('currentGrade').value);
+        const weight = parseFloat(document.getElementById('finalWeight').value);
+        const target = parseFloat(document.getElementById('targetGrade').value);
+
+        // Temel doğrulama
+        if (isNaN(current) || isNaN(weight) || isNaN(target)) {
+          resultDiv.textContent = 'Please fill in all fields correctly.';
+          resultDiv.style.color = '#dc2626';
+          return;
+        }
+
+        if (weight <= 0 || weight >= 100) {
+          resultDiv.textContent = 'Final exam weight must be between 0 and 100% (exclusive).';
+          resultDiv.style.color = '#dc2626';
+          return;
+        }
+
+        // Hesaplama formülü
+        const required = (target - current * (1 - weight / 100)) / (weight / 100);
+
+        let message = '';
+        let color = '';
+
+        if (required <= 0) {
+          message = `You're already guaranteed at least ${target}% – you can score 0 on the final! 🎉`;
+          color = '#16a34a';
+        } else if (required <= 70) {
+          message = `You only need ${required.toFixed(2)}% on the final – you're in great shape! 🎉`;
+          color = '#16a34a';
+        } else if (required <= 90) {
+          message = `You need ${required.toFixed(2)}% on the final – you've got this! ✅`;
+          color = '#22c55e';
+        } else if (required <= 100) {
+          message = `You need ${required.toFixed(2)}% on the final – challenging but possible! 💪`;
+          color = '#f97316';
+        } else {
+          message = `You need ${required.toFixed(2)}% on the final – unfortunately impossible without extra credit. 😔`;
+          color = '#dc2626';
+        }
+
+        resultDiv.textContent = message;
+        resultDiv.style.color = color;
+      });
+
+      clearBtn.addEventListener('click', () => {
+        document.getElementById('currentGrade').value = '';
+        document.getElementById('finalWeight').value = '';
+        document.getElementById('targetGrade').value = '';
+        resultDiv.textContent = '';
+        resultDiv.style.color = ''; // rengi sıfırla
+      });
+
+      // Lucide ikonları (eğer varsa)
       if (typeof lucide !== 'undefined') {
         lucide.createIcons();
       }
