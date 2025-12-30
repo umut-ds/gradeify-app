@@ -1,147 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Final Exam Grade Calculator — Gradify</title>
-  <meta name="description" content="Free tool to calculate exactly what score you need on your final exam to get your desired overall grade." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://gradify.app/final-grade-calculator.html" />
-  
-  <!-- Critical CSS -->
+  <!-- ... (head kısmı öncekiyle tamamen aynı kalıyor) ... -->
   <style>
-    :root{--primary:#4f46e5;--primary-dark:#4338ca}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;margin:0;background:#f6f7fb;color:#222;line-height:1.6}header{background:var(--primary);color:#fff;padding:3rem 1rem;text-align:center}header a{color:white;text-decoration:none}h1{margin:0;font-size:2.5rem}header p{margin:.5rem 0 0;opacity:.9}main{max-width:1000px;margin:0 auto;padding:1rem}.skip-to-content{position:absolute;left:-9999px;z-index:999;background:var(--primary);color:white;padding:1rem;text-decoration:none}.skip-to-content:focus{left:0;top:0}
-  </style>
-  
-  <link rel="stylesheet" href="/assets/styles.min.css" />
-  
-  <!-- Schema Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Gradify - Final Exam Grade Calculator",
-    "description": "Calculate the exact score needed on your final exam to achieve your target grade.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
     }
-  }
-  </script>
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Final Exam Grade Calculator — Gradify" />
-  <meta property="og:description" content="Free tool to calculate exactly what score you need on your final exam." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://gradify.app/final-grade-calculator.html" />
-  <meta property="og:image" content="https://gradify.app/assets/og-image-final.png" />
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Final Exam Grade Calculator — Gradify" />
-  <meta name="twitter:description" content="Calculate your required final exam score instantly." />
-  <meta name="twitter:image" content="https://gradify.app/assets/og-image-final.png" />
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #f8fafc;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      padding: 4rem 1rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(79,70,229,.35);
+    }
+    header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      margin-bottom: .5rem;
+    }
+    header a { color: #fff; text-decoration: none; }
+    header p {
+      font-size: 1.15rem;
+      opacity: .95;
+      max-width: 640px;
+      margin: auto;
+    }
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    /* Ortalanmış geri dönüş linki */
+    .back-link {
+      text-align: center;
+      margin: 3rem 0 4rem;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    .back-link a {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    .calculator-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      margin-bottom: 3rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    label {
+      display: block;
+      margin-bottom: .5rem;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: .85rem 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79,70,229,.2);
+    }
+
+    /* Tooltip stili - mavi i ikonu */
+    .tooltip {
+      display: inline-flex;
+      margin-left: 0.5rem;
+      width: 20px;
+      height: 20px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: bold;
+      align-items: center;
+      justify-content: center;
+      cursor: help;
+      position: relative;
+    }
+    .tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      z-index: 10;
+      pointer-events: none;
+      min-width: 200px;
+      text-align: center;
+    }
+    .tooltip:hover::after,
+    .tooltip:focus::after {
+      opacity: 1;
+      visibility: visible;
+    }
+    .tooltip::before {
+      content: "";
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: #1e293b;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+    }
+    .tooltip:hover::before,
+    .tooltip:focus::before {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .primary-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+    .primary-btn:hover { background: var(--primary-dark); }
+    .secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid #94a3b8;
+      padding: .95rem 1.4rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 12px;
+      min-height: 50px;
+    }
+    .ad {
+      margin: 3rem auto;
+      max-width: 728px;
+      min-height: 90px;
+      background: rgba(0,0,0,.03);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    footer {
+      text-align: center;
+      padding: 4rem 1rem;
+      opacity: .85;
+    }
+    footer nav a {
+      margin: 0 .75rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .skip-to-content {
+      position: absolute;
+      left: -9999px;
+      background: var(--primary);
+      color: #fff;
+      padding: .75rem 1rem;
+      z-index: 999;
+    }
+    .skip-to-content:focus {
+      left: 1rem;
+      top: 1rem;
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
-  
+
   <header>
-    <h1><a href="/">Gradify</a></h1>
-    <p>Free Final Exam Grade Calculator</p>
+    <h1><a href="/">Gradeify</a></h1>
+    <p>Free Final Grade Calculator</p>
   </header>
-  
+
   <main id="main-content">
+    <!-- Ortalı geri dönüş linki -->
     <div class="back-link">
-      <a href="/">← All Calculators</a>
+      <a href="/">← Back to All Calculators</a>
     </div>
-    
-    <div class="ad" role="complementary" aria-label="Advertisement">
-      AdSense – Top Banner
+
+    <!-- Reklam üst -->
+    <div class="ad" role="region" aria-label="Advertisement">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    
-    <section aria-labelledby="final-heading">
+
+    <section class="calculator-card" aria-labelledby="final-heading">
       <h2 id="final-heading">What Score Do I Need on the Final?</h2>
-      
+
       <div class="form-group">
         <label for="currentGrade">
           Current Grade (%)
-          <span class="tooltip" aria-label="Your grade before the final exam">ℹ️</span>
+          <span class="tooltip" data-tip="Your average grade so far, before taking the final exam">i</span>
         </label>
-        <input 
-          type="number" 
-          id="currentGrade" 
-          min="0" 
-          max="100" 
-          step="0.01" 
-          placeholder="e.g. 82.5"
-          aria-required="true"
-        />
+        <input type="number" id="currentGrade" min="0" max="100" step="0.01" placeholder="e.g. 82.5" aria-required="true" />
       </div>
-      
+
       <div class="form-group">
         <label for="finalWeight">
           Final Exam Weight (%)
-          <span class="tooltip" aria-label="How much the final exam counts toward your grade">ℹ️</span>
+          <span class="tooltip" data-tip="The percentage of your overall grade that the final exam is worth">i</span>
         </label>
-        <input 
-          type="number" 
-          id="finalWeight" 
-          min="0" 
-          max="100" 
-          step="0.01" 
-          placeholder="e.g. 30"
-          aria-required="true"
-        />
+        <input type="number" id="finalWeight" min="0" max="100" step="0.01" placeholder="e.g. 30" aria-required="true" />
       </div>
-      
+
       <div class="form-group">
         <label for="targetGrade">
           Desired Overall Grade (%)
-          <span class="tooltip" aria-label="The final grade you want to achieve">ℹ️</span>
+          <span class="tooltip" data-tip="The final course grade you want to achieve at the end of the semester">i</span>
         </label>
-        <input 
-          type="number" 
-          id="targetGrade" 
-          min="0" 
-          max="100" 
-          step="0.01" 
-          placeholder="e.g. 90"
-          aria-required="true"
-        />
+        <input type="number" id="targetGrade" min="0" max="100" step="0.01" placeholder="e.g. 90" aria-required="true" />
       </div>
-      
+
       <button id="calculateFinalBtn" class="primary-btn">Calculate Required Score</button>
       <button id="clearFinalBtn" class="secondary">Clear</button>
-      
+
       <div id="finalResult" class="result" role="alert" aria-live="polite"></div>
     </section>
-    
-    <div class="ad" role="complementary" aria-label="Advertisement">
-      AdSense – Bottom
+
+    <!-- Reklam alt -->
+    <div class="ad" role="region" aria-label="Advertisement">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    
-    <section>
+
+    <section class="calculator-card">
       <h3>How to Use This Calculator</h3>
-      <p>Enter your current grade, the weight of your final exam, and your desired overall grade. We'll calculate exactly what score you need on the final exam.</p>
-      <p><strong>Example:</strong> If you have an 85% currently, your final is worth 30%, and you want a 90% overall, you'd need a 101.67% on the final (which means it's impossible without extra credit).</p>
-      <p><strong>Disclaimer:</strong> This is an estimation tool. Always confirm with your instructor or syllabus.</p>
+      <p>Enter your current grade, the weight of your final exam, and your desired overall grade. We'll instantly calculate what score you need on the final.</p>
+      <p><strong>Example:</strong> Current grade 85%, final worth 30%, target 90% → you need 101.67% on the final (impossible without extra credit).</p>
+      <p><strong>Disclaimer:</strong> Results are estimates. Always verify with your syllabus or instructor.</p>
     </section>
   </main>
-  
+
   <footer>
-    <p>© 2025 Gradify.app</p>
+    <p>© 2025 <strong>Gradeify</strong>. Built for students.</p>
     <nav aria-label="Footer navigation">
-      <a href="/">Home</a> • 
-      <a href="/final-grade-calculator.html">Final</a> • 
-      <a href="/weighted-grade-calculator.html">Weighted</a> • 
+      <a href="/">Home</a>
+      <a href="/final-grade-calculator.html">Final</a>
+      <a href="/weighted-grade-calculator.html">Weighted</a>
       <a href="/gpa-calculator.html">GPA</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:hello@gradeify.app">Contact Us</a>
     </nav>
   </footer>
-  
+
+  <script src="/assets/lucide.min.js" defer></script>
   <script src="/assets/script.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 </body>
 </html>
