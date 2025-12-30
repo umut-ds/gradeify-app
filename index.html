@@ -11,6 +11,7 @@
   <meta name="theme-color" content="#4f46e5" />
   <meta name="color-scheme" content="light dark">
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Gradeify" />
   <meta property="og:title" content="Gradeify — Free Grade & GPA Calculator" />
@@ -19,6 +20,7 @@
   <meta property="og:image" content="https://gradeify.app/assets/og-image.png" />
   <meta property="og:image:alt" content="Gradeify logo and preview of grade calculators" />
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Gradeify — Free Grade & GPA Calculator" />
   <meta name="twitter:description" content="Smart academic calculators for students. Final grade, weighted average and GPA tools." />
@@ -28,8 +30,34 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <!-- Lucide self-hosted -->
+  <!-- Lucide Icons (self-hosted) -->
   <script src="/assets/lucide.min.js" defer></script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalApplication",
+    "name": "Gradeify",
+    "url": "https://gradeify.app",
+    "description": "Free academic calculators for grades and GPA.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "creator": {
+      "@type": "Organization",
+      "name": "Gradeify"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
   <style>
     :root {
@@ -53,52 +81,42 @@
       color: var(--text);
       line-height: 1.6;
     }
-
     header {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #fff;
       padding: 4rem 1rem;
       text-align: center;
-      clip-path: none;
       box-shadow: 0 10px 40px rgba(79,70,229,.35);
     }
-
     header h1 {
       font-size: clamp(2.4rem, 5vw, 3.2rem);
       letter-spacing: -0.02em;
+      margin-bottom: .5rem;
     }
-
     header p {
       font-size: 1.15rem;
       opacity: .95;
+      max-width: 640px;
+      margin: auto;
     }
-
     header::after {
       content: "";
       display: block;
       height: 1px;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255,255,255,.6),
-        transparent
-      );
+      background: linear-gradient(to right, transparent, rgba(255,255,255,.6), transparent);
       margin-top: 2.5rem;
     }
-
     main {
       max-width: 1100px;
       margin: auto;
       padding: 1rem;
     }
-
     .tool-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
       gap: 1.5rem;
       margin-top: -3rem;
     }
-
     .tool-card {
       background: var(--card);
       border-radius: 18px;
@@ -109,46 +127,42 @@
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
       transition: transform .3s, box-shadow .3s;
     }
-
     .tool-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 40px rgba(79,70,229,.25);
     }
-
     .tool-card svg {
       color: var(--primary);
       margin-bottom: 1rem;
       width: 42px;
       height: 42px;
     }
-
     .ad-home {
       margin: 3rem auto;
       max-width: 728px;
       min-height: 90px;
       background: rgba(0,0,0,.03);
       border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
     .seo-section {
       margin-top: 4rem;
       padding: 2.5rem;
       background: var(--card);
       border-radius: 16px;
     }
-
     footer {
       text-align: center;
       padding: 4rem 1rem;
       opacity: .85;
     }
-
     footer nav a {
       margin: 0 .75rem;
       color: var(--primary);
       text-decoration: none;
     }
-
     .skip-to-content {
       position: absolute;
       left: -9999px;
@@ -157,12 +171,10 @@
       padding: .75rem 1rem;
       z-index: 999;
     }
-
     .skip-to-content:focus {
       left: 1rem;
       top: 1rem;
     }
-
     .visually-hidden {
       position: absolute;
       width: 1px;
@@ -175,90 +187,81 @@
       border: 0;
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalApplication",
-    "name": "Gradeify",
-    "url": "https://gradeify.app",
-    "description": "Free academic calculators for grades and GPA.",
-    "applicationCategory": "EducationalApplication",
-    "operatingSystem": "All",
-    "creator": {
-      "@type": "Organization",
-      "name": "Gradeify"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
-  }
-  </script>
 </head>
-
 <body>
-<a href="#main" class="skip-to-content">Skip to main content</a>
+  <a href="#main" class="skip-to-content">Skip to main content</a>
 
-<header>
-  <h1>Gradeify</h1>
-  <p>Smart grade & GPA calculators for students worldwide</p>
-</header>
+  <header>
+    <h1>Gradeify</h1>
+    <p>Smart grade & GPA calculators for students worldwide</p>
+  </header>
 
-<main id="main">
-  <section class="tool-grid" aria-labelledby="tools-heading">
-    <h2 id="tools-heading" class="visually-hidden">Available Tools</h2>
+  <main id="main">
+    <section class="tool-grid" aria-labelledby="tools-heading">
+      <h2 id="tools-heading" class="visually-hidden">Available Tools</h2>
+      
+      <a href="/final-grade-calculator.html" class="tool-card"
+         aria-label="Final Grade Calculator: Find the exact score you need on your final exam">
+        <svg data-lucide="calculator"></svg>
+        <h3>Final Grade Calculator</h3>
+        <p>Find the exact score you need on your final exam.</p>
+      </a>
+      
+      <a href="/weighted-grade-calculator.html" class="tool-card"
+         aria-label="Weighted Grade Calculator: Calculate averages with custom assessment weights">
+        <svg data-lucide="scale"></svg>
+        <h3>Weighted Grade Calculator</h3>
+        <p>Calculate averages with custom assessment weights.</p>
+      </a>
+      
+      <a href="/gpa-calculator.html" class="tool-card"
+         aria-label="GPA Calculator: Supports US 4.0, UK and ECTS grading systems">
+        <svg data-lucide="graduation-cap"></svg>
+        <h3>GPA Calculator</h3>
+        <p>Supports US 4.0, UK and ECTS systems.</p>
+      </a>
+    </section>
 
-    <a href="/final-grade-calculator.html" class="tool-card">
-      <svg data-lucide="calculator"></svg>
-      <h3>Final Grade Calculator</h3>
-      <p>Find the exact score you need on your final exam.</p>
-    </a>
+    <!-- Homepage Advertisement -->
+    <div class="ad-home" role="region" aria-label="Advertisement">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
 
-    <a href="/weighted-grade-calculator.html" class="tool-card">
-      <svg data-lucide="scale"></svg>
-      <h3>Weighted Grade Calculator</h3>
-      <p>Calculate averages with custom assessment weights.</p>
-    </a>
+    <article class="seo-section">
+      <h2>Calculate Your Grades Accurately</h2>
+      <p><strong>Gradeify</strong> helps students plan, track and optimize academic performance. No sign-up, no ads inside calculators, and instant results.</p>
+      <ul>
+        <li>🎯 Goal-oriented final exam planning</li>
+        <li>⚡ Instant and error-free calculations</li>
+        <li>🌍 International grading systems supported</li>
+      </ul>
+    </article>
+  </main>
 
-    <a href="/gpa-calculator.html" class="tool-card">
-      <svg data-lucide="graduation-cap"></svg>
-      <h3>GPA Calculator</h3>
-      <p>Supports US 4.0, UK and ECTS systems.</p>
-    </a>
-  </section>
+  <footer>
+    <p>© 2025 <strong>Gradeify</strong>. Built for students.</p>
+    <nav aria-label="Footer navigation">
+      <a href="/">Home</a>
+      <a href="/final-grade-calculator.html">Final</a>
+      <a href="/weighted-grade-calculator.html">Weighted</a>
+      <a href="/gpa-calculator.html">GPA</a>
+    </nav>
+  </footer>
 
-  <!-- Homepage Ad Placeholder -->
-  <div class="ad ad-home" aria-label="Advertisement"></div>
-
-  <article class="seo-section">
-    <h2>Calculate Your Grades Accurately</h2>
-    <p><strong>Gradeify</strong> helps students plan, track and optimize academic performance. No sign-up, no ads inside calculators, and instant results.</p>
-    <ul>
-      <li>🎯 Goal-oriented final exam planning</li>
-      <li>⚡ Instant and error-free calculations</li>
-      <li>🌍 International grading systems supported</li>
-    </ul>
-  </article>
-</main>
-
-<footer>
-  <p>© 2025 <strong>Gradeify</strong>. Built for students.</p>
-  <nav aria-label="Footer navigation">
-    <a href="/">Home</a>
-    <a href="/final-grade-calculator.html">Final</a>
-    <a href="/weighted-grade-calculator.html">Weighted</a>
-    <a href="/gpa-calculator.html">GPA</a>
-  </nav>
-</footer>
-
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    if (typeof lucide !== 'undefined') {
-      lucide.createIcons();
-    }
-  });
-</script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
 </body>
 </html>
