@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weighted Grade Calculator — Gradify</title>
+  <meta name="description" content="Calculate your overall grade when assignments have different weights. Add as many items as needed." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gradify.app/weighted-grade-calculator.html" />
+  
+  <!-- Critical CSS -->
+  <style>
+    :root{--primary:#4f46e5;--primary-dark:#4338ca}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;margin:0;background:#f6f7fb;color:#222;line-height:1.6}header{background:var(--primary);color:#fff;padding:3rem 1rem;text-align:center}header a{color:white;text-decoration:none}h1{margin:0;font-size:2.5rem}header p{margin:.5rem 0 0;opacity:.9}main{max-width:1000px;margin:0 auto;padding:1rem}.skip-to-content{position:absolute;left:-9999px;z-index:999;background:var(--primary);color:white;padding:1rem;text-decoration:none}.skip-to-content:focus{left:0;top:0}
+  </style>
+  
+  <link rel="stylesheet" href="/assets/styles.min.css" />
+  
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gradify - Weighted Grade Calculator",
+    "description": "Calculate your overall grade with multiple assignments and different weights.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Weighted Grade Calculator — Gradify" />
+  <meta property="og:description" content="Free tool to calculate weighted average grades." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gradify.app/weighted-grade-calculator.html" />
+  <meta property="og:image" content="https://gradify.app/assets/og-image-weighted.png" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Weighted Grade Calculator — Gradify" />
+  <meta name="twitter:description" content="Calculate weighted average grades easily." />
+  <meta name="twitter:image" content="https://gradify.app/assets/og-image-weighted.png" />
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
+  <header>
+    <h1><a href="/">Gradify</a></h1>
+    <p>Free Weighted Grade Calculator</p>
+  </header>
+  
+  <main id="main-content">
+    <div class="back-link">
+      <a href="/">← All Calculators</a>
+    </div>
+    
+    <div class="ad" role="complementary" aria-label="Advertisement">
+      AdSense – Top Banner
+    </div>
+    
+    <section aria-labelledby="weighted-heading">
+      <h2 id="weighted-heading">Weighted Grade Calculator</h2>
+      <p>Add all your assignments with their scores and weights. The calculator will determine your overall weighted grade.</p>
+      
+      <div id="assignments" role="list" aria-label="Assignments list"></div>
+      
+      <div class="add-course">
+        <button id="addAssignmentBtn" class="primary-btn">+ Add Assignment</button>
+        <button id="clearWeightedBtn" class="secondary">Clear All</button>
+      </div>
+      
+      <button id="calculateWeightedBtn" class="calculate-btn">Calculate Weighted Grade</button>
+      
+      <div id="weightedResult" class="result" role="alert" aria-live="polite"></div>
+    </section>
+    
+    <div class="ad" role="complementary" aria-label="Advertisement">
+      AdSense – Bottom
+    </div>
+    
+    <section>
+      <h3>How to Use This Calculator</h3>
+      <p>Add each assignment or category (homework, quizzes, exams) with its score and weight. The total weight should equal 100% for accurate results.</p>
+      <p><strong>Example:</strong> Homework (85%, 20 weight), Midterm (78%, 30 weight), Final (90%, 50 weight) = 84.1% overall grade.</p>
+      <p><strong>Disclaimer:</strong> This is an estimation tool. Always confirm with your instructor or syllabus.</p>
+    </section>
+  </main>
+  
+  <footer>
+    <p>© 2025 Gradify.app</p>
+    <nav aria-label="Footer navigation">
+      <a href="/">Home</a> • 
+      <a href="/final-grade-calculator.html">Final</a> • 
+      <a href="/weighted-grade-calculator.html">Weighted</a> • 
+      <a href="/gpa-calculator.html">GPA</a>
+    </nav>
+  </footer>
+  
+  <script src="/assets/script.js" defer></script>
+</body>
+</html>

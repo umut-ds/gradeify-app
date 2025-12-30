@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPA Calculator (US 4.0, UK, ECTS) — Gradify</title>
+  <meta name="description" content="Calculate your GPA on US 4.0, UK, or ECTS scale. Add multiple courses with credit hours." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gradify.app/gpa-calculator.html" />
+  
+  <!-- Critical CSS -->
+  <style>
+    :root{--primary:#4f46e5;--primary-dark:#4338ca}body{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;margin:0;background:#f6f7fb;color:#222;line-height:1.6}header{background:var(--primary);color:#fff;padding:3rem 1rem;text-align:center}header a{color:white;text-decoration:none}h1{margin:0;font-size:2.5rem}header p{margin:.5rem 0 0;opacity:.9}main{max-width:1000px;margin:0 auto;padding:1rem}.skip-to-content{position:absolute;left:-9999px;z-index:999;background:var(--primary);color:white;padding:1rem;text-decoration:none}.skip-to-content:focus{left:0;top:0}
+  </style>
+  
+  <link rel="stylesheet" href="/assets/styles.min.css" />
+  
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gradify - GPA Calculator",
+    "description": "Calculate GPA on US 4.0, UK, and ECTS scales with multiple courses.",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "US 4.0 GPA Scale",
+      "UK Grading Scale",
+      "ECTS European Scale"
+    ]
+  }
+  </script>
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="GPA Calculator (US, UK, ECTS) — Gradify" />
+  <meta property="og:description" content="Free multi-scale GPA calculator for students worldwide." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gradify.app/gpa-calculator.html" />
+  <meta property="og:image" content="https://gradify.app/assets/og-image-gpa.png" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GPA Calculator (US, UK, ECTS) — Gradify" />
+  <meta name="twitter:description" content="Calculate your GPA on multiple scales." />
+  <meta name="twitter:image" content="https://gradify.app/assets/og-image-gpa.png" />
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  
+  <header>
+    <h1><a href="/">Gradify</a></h1>
+    <p>Free GPA Calculator</p>
+  </header>
+  
+  <main id="main-content">
+    <div class="back-link">
+      <a href="/">← All Calculators</a>
+    </div>
+    
+    <div class="ad" role="complementary" aria-label="Advertisement">
+      AdSense – Top Banner
+    </div>
+    
+    <section aria-labelledby="gpa-heading">
+      <h2 id="gpa-heading">GPA Calculator</h2>
+      <p>Supports <strong>US 4.0</strong>, <strong>UK</strong>, and <strong>ECTS</strong> scales. Conversions are approximate and may vary by institution.</p>
+      
+      <div class="form-group">
+        <label for="gpaScale">
+          Select GPA Scale
+          <span class="tooltip" aria-label="Choose your grading system">ℹ️</span>
+        </label>
+        <select id="gpaScale" aria-required="true">
+          <option value="us">US 4.0 Scale</option>
+          <option value="uk">UK Scale</option>
+          <option value="ects">ECTS (European)</option>
+        </select>
+      </div>
+      
+      <div id="courses" role="list" aria-label="Courses list"></div>
+      
+      <div class="add-course">
+        <button id="addCourseBtn" class="primary-btn">+ Add Course</button>
+        <button id="clearGPABtn" class="secondary">Clear All</button>
+      </div>
+      
+      <button id="calculateGPABtn" class="calculate-btn">Calculate GPA</button>
+      
+      <div id="gpaResult" class="result" role="alert" aria-live="polite"></div>
+    </section>
+    
+    <div class="ad" role="complementary" aria-label="Advertisement">
+      AdSense – Bottom
+    </div>
+    
+    <section>
+      <h3>How to Use This Calculator</h3>
+      <p>Select your grading scale, then add each course with its letter grade and credit hours. The calculator will compute your cumulative GPA.</p>
+      <p><strong>Note:</strong> Different institutions may have slightly different GPA scales. These conversions are standardized approximations.</p>
+      <p><strong>Disclaimer:</strong> This is an estimation tool. Always confirm with your institution.</p>
+    </section>
+  </main>
+  
+  <footer>
+    <p>© 2025 Gradify.app</p>
+    <nav aria-label="Footer navigation">
+      <a href="/">Home</a> • 
+      <a href="/final-grade-calculator.html">Final</a> • 
+      <a href="/weighted-grade-calculator.html">Weighted</a> • 
+      <a href="/gpa-calculator.html">GPA</a>
+    </nav>
+  </footer>
+  
+  <script src="/assets/script.js" defer></script>
+</body>
+</html>
