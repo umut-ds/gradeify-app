@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Sitemap: https://gradeify.app/sitemap.xml
+
+# Block AI training bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
